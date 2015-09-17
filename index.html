@@ -1,0 +1,25 @@
+<html>
+ <head>
+ </head>
+ <body>
+  <div>
+   <span>
+    Width: <input type="text" value="128" id="width"/>
+    Height: <input type="text" value="128" id="height"/>
+    <button onclick="editor.update()">Update</button>
+   </span>
+  </div>
+  <div>
+   <canvas id="display" style="float:left" width=640 height=480 onmousemove="input.onMouse(event);"></canvas>
+   <div id="tileList" style="float:right; width:300; height:100%;">
+   </div>
+  </div>
+ </body>
+ <script src="js/image.js"></script>
+ <script src="js/tile.js"></script>
+ <script src="js/input.js"></script>
+ <script src="js/map.js"></script>
+ <script src="js/editor.js"></script>
+ <script src="js/display.js"></script>
+ <script src="js/main.js"></script>
+</html>
