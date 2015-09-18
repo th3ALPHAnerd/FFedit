@@ -1,4 +1,3 @@
-
 "use strict";
 
 var display = {};
@@ -34,9 +33,9 @@ display.clear = function() {
 };
 
 display.drawMap = function() {
- for(var i=0;i<map.size.x;i++) {
-  for(var j=0;j<map.size.y;j++) {
-	  display.context.drawImage(map.tileSet, 0, 0, 16, 16, i*16, j*16, display.scale, display.scale);
+ for(var i=0;i<window.map.size.x;i++) {
+  for(var j=0;j<window.map.size.y;j++) {
+	  display.context.drawImage(window.map.tileSet, 0, 0, 16, 16, i*16, j*16, display.scale, display.scale);
   }
  }
 

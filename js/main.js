@@ -1,8 +1,7 @@
-
 "use strict";
 
 var requestAnimFrame = (function(){
-    return window.requestAnimationFrame       ||
+    return window.requestAnimationFrame    ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame    ||
         window.oRequestAnimationFrame      ||
@@ -17,13 +16,13 @@ var requestAnimFrame = (function(){
 var main = {};
 
 main.init = function() {
- image.init();
- image.onReady( function() {
-	 tile.init();
-	 input.init();
-	 map.init();
-	 editor.init();
-	 display.init();
+ window.image.init();
+ window.image.onReady( function() {
+	 window.tile.init();
+	 window.input.init();
+	 window.map.init();
+	 window.editor.init();
+	 window.display.init();
 	 main.step();
  });
 };
@@ -34,8 +33,8 @@ main.step = function() {
 
  if(now - main.lastTime > 33) {
   main.lastTime = now;
-  editor.step();
-  display.draw();
+  window.editor.step();
+  window.display.draw();
  }
 
  requestAnimFrame(function() { main.step(); });

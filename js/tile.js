@@ -3,18 +3,27 @@
 var tile = {};
 
 tile.init = function() {
-	tile.container = document.getElementById("tileList");
-	tile.buildList("img/test.png",128,128);
+  tile.container = document.getElementById("tileList");
+  tile.container.innerHTML = tile.buildList("img/test.png",72,72,936);
 };
 
-tile.buildList = function(src,x,y) {
-	var s = 1000;
-	var tonsOfHtml = "<div style='overflow: hidden; width: " + s + "px; height: " + s + "px;' onclick='console.log(\"I pushed the button numero " + i + "," + j + "!\");'>";
-	for(var i=0;i<x/s;i++) {
-		for(var j=0;j<y/s;j++) {
-			tonsOfHtml += "<img src='" + src + "' ></img>";
-		}
+tile.buildList = function(src,x,y,size) {
+  var width = x*4+16;
+  var tonsOfHtml = "<div class='wrapper' style='width:" + width + "px;'>";
+  for(var i=0;i<size/y;i++) {
+    for(var j=0;j<size/x;j++) {
+      tonsOfHtml += "<div onclick='window.tile.selectTile(this)'class='cell' style='width: " + x + "px; height: " + y + "px;'>" +
+                    "<img style='margin-left: -" + j*x + ";margin-top:-" + i*y + "' src='" + src + "' ></img></div>";
+    }
   }
-  tonsOfHtml += "</div>"
-  tile.container.innerHTML = tonsOfHtml;
+  tonsOfHtml += "</div>";
+  return tonsOfHtml;
+};
+
+tile.selectTile = function(element) {
+  var previousSelected = document.getElementsByClassName('selected');
+  for(var i=0;i<previousSelected.length;i++) {
+    previousSelected[i].className = 'cell';
+  }
+  element.className = 'selected';
 };
