@@ -1,4 +1,3 @@
-
 "use strict";
 
 var input = {};
@@ -8,11 +7,11 @@ input.init = function() {
 };
 
 input.onMouse = function(evt) {
-	        var rect = display.canvas.getBoundingClientRect();
-	        input.mouse.pos = {
-	          x: evt.clientX - rect.left,
-	          y: evt.clientY - rect.top
-        	};
+  var rect = window.display.canvas.getBoundingClientRect();
+  input.mouse.pos = {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
 };
 
 input.getWidthField = function() {

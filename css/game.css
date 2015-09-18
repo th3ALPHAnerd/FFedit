@@ -1,0 +1,12 @@
+.wrapper {
+}
+.cell {
+  overflow:hidden;
+  float:left;
+  border:2px solid white;
+}
+.selected {
+  overflow:hidden;
+  float:left;
+  border:2px solid purple;
+}

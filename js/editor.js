@@ -1,4 +1,3 @@
-
 "use strict";
 
 var editor = {};
@@ -12,5 +11,5 @@ editor.step = function() {
 };
 
 editor.update = function() {
-	map.resize(input.getWidthField(),input.getHeightField());
+	window.map.resize(window.input.getWidthField(),window.input.getHeightField());
 };
