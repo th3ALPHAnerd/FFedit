@@ -1,4 +1,3 @@
-
 "use strict";
 
 var display = {};
@@ -6,11 +5,15 @@ var display = {};
 display.init = function() {
  display.canvas = document.getElementById("display");
  display.context = display.canvas.getContext("2d");
+ document.oncontextmenu = function (e) {
+     e.preventDefault();
+ };
 
  display.width = display.canvas.width;
  display.height = display.canvas.height;
 
- display.scale = 16;
+ display.offset = {x: 0, y: 0}; //Screen position offset from default at top left.
+ display.scale = 16; //Drawing scale
 };
 
 display.draw = function() {
@@ -34,9 +37,12 @@ display.clear = function() {
 };
 
 display.drawMap = function() {
- for(var i=0;i<map.size.x;i++) {
-  for(var j=0;j<map.size.y;j++) {
-	  display.context.drawImage(map.tileSet, 0, 0, 16, 16, i*16, j*16, display.scale, display.scale);
+
+
+ for(var i=0;i<window.map.size.x;i++) {
+  for(var j=0;j<window.map.size.y;j++) {
+		var tileOffset = tile.getTileByIndex(map.data[i][j]);
+	  display.context.drawImage(window.map.tileSet, tileOffset.x*tile.res, tileOffset.y*tile.res, tile.res, tile.res, (i*display.scale)-display.offset.x, (j*display.scale)-display.offset.y, display.scale, display.scale);
   }
  }
 
