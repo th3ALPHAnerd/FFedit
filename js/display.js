@@ -12,7 +12,7 @@ display.init = function() {
  display.width = display.canvas.width;
  display.height = display.canvas.height;
 
- display.offset = {x: 0, y: 0}; //Screen position offset from default at top left.
+ display.offset = {x: 0, y: 0}; //Screen position offset from default at top left
  display.scale = 16; //Drawing scale
 };
 
@@ -21,6 +21,7 @@ display.draw = function() {
 
  display.clear();
  display.drawMap();
+ editor.draw();
 };
 
 display.update = function() {
@@ -41,8 +42,18 @@ display.drawMap = function() {
 
  for(var i=0;i<window.map.size.x;i++) {
   for(var j=0;j<window.map.size.y;j++) {
-		var tileOffset = tile.getTileByIndex(map.data[i][j]);
-	  display.context.drawImage(window.map.tileSet, tileOffset.x*tile.res, tileOffset.y*tile.res, tile.res, tile.res, (i*display.scale)-display.offset.x, (j*display.scale)-display.offset.y, display.scale, display.scale);
+		var tileOffset = tile.getTileByIndex(map.data[i][j].tile);
+		display.context.save();
+		display.context.translate((i*display.scale)-display.offset.x, (j*display.scale)-display.offset.y);
+		switch(map.data[i][j].r) {
+	  	case 0 : display.context.rotate(0*Math.PI/180); break;
+	  	case 1 : display.context.rotate(90*Math.PI/180); break;
+	  	case 2 : display.context.rotate(180*Math.PI/180); break;
+	  	case 3 : display.context.rotate(270*Math.PI/180); break;
+		}
+		//display.context.drawImage(window.tile.tileSet, tileOffset.x*tile.res, tileOffset.y*tile.res, tile.res, tile.res, (i*display.scale)-display.offset.x, (j*display.scale)-display.offset.y, display.scale, display.scale);
+  	display.context.drawImage(window.tile.tileSet, tileOffset.x*tile.res, tileOffset.y*tile.res, tile.res, tile.res, -(display.scale/2), -(display.scale/2), display.scale, display.scale);
+  	display.context.restore();
   }
  }
 
