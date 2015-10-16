@@ -3,8 +3,11 @@
 var tile = {};
 
 tile.init = function() {
+
+	tile.tileSet = window.image.get('img/test.png');
 	tile.res = 72;  //Resolution of a single tile
 	tile.sheetRes = 936;//Resolution of the full sheet
+
   tile.container = document.getElementById("tileList");
   tile.container.innerHTML = tile.buildList("img/test.png",tile.res,tile.res,tile.sheetRes);
   tile.selected = 0;
