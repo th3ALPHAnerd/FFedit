@@ -10,7 +10,6 @@ input.init = function() {
 };
 
 input.onKey = function(evt, state) {
-	console.log(evt.keyCode);
  input.keys[evt.keyCode] = state;
 };
 
