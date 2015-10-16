@@ -3,10 +3,9 @@
 var map = {};
 
 map.init = function() {
-	map.data = [];
 	map.size = {x: 0, y: 0};
 
-	map.tileSet = window.image.get('img/test.png');
+	map.resize(128,128);
 };
 
 map.resize = function(x,y) {
@@ -15,7 +14,7 @@ map.resize = function(x,y) {
 	for(var i=0;i<x;i++) {
 		map.data.push([]);
 		for(var j=0;j<y;j++) {
-		  map.data[i].push( Math.random() > 0.5 ? 1 : 0 );
+		  map.data[i].push({x:i, y:j, tile: 0, r:0, evt: []});
 		}
 	}
 };
