@@ -7,6 +7,8 @@ input.init = function() {
  input.keys = [];
  for(var i=0;i<256;i++)
  	input.keys[i] = false;
+
+ document.getElementById('file-input').addEventListener('change', map.open, false);
 };
 
 input.onKey = function(evt, state) {
@@ -40,4 +42,13 @@ input.getWidthField = function() {
 
 input.getHeightField = function() {
 	return document.getElementById("height").value;
+};
+
+input.editCollision = function() {
+	editor.editCollision = document.getElementById("collision").checked;
+
+};
+
+input.editEvent = function() {
+	editor.editEvent = document.getElementById("event").checked;
 };
