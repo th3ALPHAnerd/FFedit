@@ -25,7 +25,7 @@ display.draw = function() {
 };
 
 display.update = function() {
- display.canvas.width = window.innerWidth-42-342;
+ display.canvas.width = window.innerWidth-42-342; //border offset - toolbar offset
  display.canvas.height = window.innerHeight-42;
 
  display.width = display.canvas.width;
@@ -39,9 +39,19 @@ display.clear = function() {
 
 display.drawMap = function() {
 
+	//Screenspace bounds
+	var horiz = display.width/display.scale;
+	var vert = display.height/display.scale;
 
- for(var i=0;i<window.map.size.x;i++) {
-  for(var j=0;j<window.map.size.y;j++) {
+ var ss = {
+	x1: Math.floor((display.offset.x/display.scale)),
+	y1: Math.floor((display.offset.y/display.scale)),
+	x2: Math.floor((display.offset.x/display.scale)+(horiz+display.scale)),
+	y2: Math.floor((display.offset.y/display.scale)+(vert+display.scale))
+ };
+
+ for(var i=ss.x1>0?ss.x1:0;i<window.map.size.x&&i<ss.x2;i++) {
+  for(var j=ss.y1>0?ss.y1:0;j<window.map.size.y&&j<ss.y2;j++) {
 		var tileOffset = tile.getTileByIndex(map.data[i][j].tile);
 		display.context.save();
 		display.context.translate((i*display.scale)-display.offset.x, (j*display.scale)-display.offset.y);
@@ -53,6 +63,10 @@ display.drawMap = function() {
 		}
 		//display.context.drawImage(window.tile.tileSet, tileOffset.x*tile.res, tileOffset.y*tile.res, tile.res, tile.res, (i*display.scale)-display.offset.x, (j*display.scale)-display.offset.y, display.scale, display.scale);
   	display.context.drawImage(window.tile.tileSet, tileOffset.x*tile.res, tileOffset.y*tile.res, tile.res, tile.res, -(display.scale/2), -(display.scale/2), display.scale, display.scale);
+  	if(map.data[i][j].c && editor.editCollision) {
+			display.context.fillStyle = "#0000FF";
+			display.context.fillRect(-(display.scale/2), -(display.scale/2), display.scale, display.scale);
+		}
   	display.context.restore();
   }
  }
