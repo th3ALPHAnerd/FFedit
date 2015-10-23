@@ -8,7 +8,10 @@ image.init = function() {
   image.readyCalls = [];
 
 	image.load([
-			'img/test.png'
+			'img/test.png',
+			'img/tools.png',
+			'img/collisionTools.png',
+			'img/direction.png'
 	]);
 };
 
@@ -45,7 +48,7 @@ image._load = function(url) {
 
 image.get = function(url) {
 	return image.cache[url];
-}
+};
 
 image.isReady = function() {
 	var ready = true;
@@ -55,8 +58,8 @@ image.isReady = function() {
 		}
 	}
 	return ready;
-}
+};
 
 image.onReady = function(func) {
 	image.readyCalls.push(func);
-}
+};
