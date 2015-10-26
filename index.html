@@ -2,17 +2,17 @@
  <head>
  <link rel="stylesheet" href="css/game.css">
  </head>
- <body>
+ <body onkeyup="input.onKey(event, false);" onkeydown="input.onKey(event, true);" oncontextmenu="return false;">
   <div>
    <span>
     Width: <input type="text" value="128" id="width"/>
     Height: <input type="text" value="128" id="height"/>
-    <button onclick="editor.update()">Update</button>
+    <button onclick="editor.resizeMap()">Update</button>
    </span>
   </div>
   <div>
-   <canvas id="display" style="float:left" width=640 height=480 onmousemove="input.onMouse(event);"></canvas>
-   <div id="tileList" style="float:right; width:300; height:100%;">
+   <canvas id="display" style="float:left" width=640 height=480 onmousedown="input.onMouse(event);" onmousemove="input.onMouse(event);"></canvas>
+   <div id="tileList" style="float:right; width:330; height:100%; overflow-y:scroll; overflow-x:visible">
    </div>
   </div>
  </body>
@@ -24,3 +24,4 @@
  <script src="js/display.js"></script>
  <script src="js/main.js"></script>
 </html>
+ 

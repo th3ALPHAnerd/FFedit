@@ -8,7 +8,10 @@ image.init = function() {
   image.readyCalls = [];
 
 	image.load([
-			'img/test.png'
+			'img/test.png',
+			'img/tools.png',
+			'img/collisionTools.png',
+			'img/direction.png'
 	]);
 };
 
